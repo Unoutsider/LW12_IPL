@@ -1,13 +1,24 @@
-<h1>Ввод данных</h1>
-<p>Задание: Написать программу, которая вводит цепочку целых чисел (количество
-чисел не менее 10) и определяет наиболее длинную монотонно возрастающую их последовательность.
-</br>Вывести на печать введенную цепочку, все
-найденные последовательности и наиболее длинную из них. При программировании использовать функцию.</p>
-<h3>Введите цепочку целых чисел (количество
-чисел не менее 10):</h3>
-<h4>При наличии в последовательности различных символов, отличных от целых чисел, они будут игнорироваться!</h4>
-<%= form_tag("/calc/output", :method => "get") do %>
-   <%= label_tag("Ввод последовательности:") %>
-   <%= text_field_tag(:v) %>
-   <%= submit_tag("Результат обработки") %>
+<h2 align="center">Sequences input</h2>
+
+<% unless session[:user_id].nil? %>
+
+<p>Task: Write a program that introduces a chain of integers (the number
+of numbers is at least 10) and determines the longest monotonically increasing sequence of them.
+<br/>Print the entered chain, all
+the found sequences and the longest of them. When programming, use the function.</p>
+<p>Enter a string of integers (the number
+of numbers is at least 10):</p>
+<p>If there are different characters other than integers in the sequence, they will be ignored!</p>
+
+  <%= form_with url: '/calc/output', method: :get do |form| %>
+		<p>
+			<%= form.label 'Enter the sequence', class: 'form-label' %>
+			<%= form.text_field :val, class: 'form-control', id: 'val-input' %>
+		</p>
+		<p>
+			<%= form.submit 'Submit', class: 'btn btn-primary' %>
+		</p>
+	<% end %>
+<% else %>
+	<p id="loginmsg">To use this service, you need to be signed in!</p>
 <% end %>

@@ -1,0 +1,16 @@
+<h2 align="center">Sign in</h2>
+
+<%= form_with url: 'create', method: :post do |form| %>
+	<p>
+		<%= form.label 'Enter e-mail', class: 'form-label' %>
+		<%= form.email_field :email, placeholder: 'E-mail', class: 'form-control', id: 'email' %>
+	</p>
+	<p>
+		<%= form.label 'Enter password', class: 'form-label' %>
+		<%= form.password_field :password, class: 'form-control', id: 'password' %>
+	</p>
+	<p>
+		<%= form.submit 'Sign in', class: 'btn btn-primary' %>
+	</p>
+<% end %>
+<%= link_to 'Don\'t have an account? Sign up!', '../users/new' %>

@@ -3,16 +3,22 @@ class CalcController < ApplicationController
   end
 
   def output
-     v = params[:v].scan(/\d+/).map(&:to_i)
-     if v.length < 10
-        @result = "Количество целых чисел в последовательности должно быть больше 9!"
-     else
-        res = CalcController.processor(v)
-        @result1 = res[0]
-        @result2 = res[1]
-        @result3 = res[2]
-     end
+    if params[:val] == ''
+      flash[:warning] = 'Fill in the field'
+    elsif params[:val].scan(/\d+/).map(&:to_i).length < 10
+      flash[:warning] = 'The number of entered numbers must be greater than 9!'
+    end
+    if flash.empty?
+      val = params[:val].scan(/\d+/).map(&:to_i)
+      res = CalcController.processor(val)
+      @result1 = res[0]
+      @result2 = res[1]
+      @result3 = res[2]
+    else
+      redirect_to '/calc/input'
+    end
   end
+
   def self.processor(mas)
     arr = []
     boofer = []

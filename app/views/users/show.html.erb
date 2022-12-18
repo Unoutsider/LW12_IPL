@@ -1,0 +1,10 @@
+<h2 align="center">All users</h2>
+
+<% users = User.all %>
+<% users.each do |user| %>
+	<p>
+		<%= user.email %>
+		 ---
+		<%= user.login %><br/>
+	</p>
+<% end %>
